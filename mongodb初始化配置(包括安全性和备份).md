@@ -1,4 +1,7 @@
 # mongodb 初始化配置，包括安全性和备份
+
+ 0. 菜鸟教程的MongoDB资料, http://www.runoob.com/mongodb/mongodb-tutorial.html
+
  1. 安装mongodb 
     
     ``` shell
@@ -34,7 +37,10 @@
  
  
  3. mongodb 连接
+    
+    ```
     mongodb://[username:password@]host1[:port1][,host2[:port2],...[,hostN[:portN]]][/[database][?options]]
+    ```
 
 
  4. 数据备份 mongodump --help
@@ -125,9 +131,9 @@
  6. 安全性:通过SSH通道连接(这个没理解)
     
     ``` shell
-        # https://docs.mongodb.com/manual/administration/security-checklist/
-        # https://www.digitalocean.com/community/tutorials/how-to-securely-configure-a-production-mongodb-server
-        # http://security.stackexchange.com/questions/7610/how-to-secure-a-mongodb-instance/7655#7655
+    # https://docs.mongodb.com/manual/administration/security-checklist/
+    # https://www.digitalocean.com/community/tutorials/how-to-securely-configure-a-production-mongodb-server
+    # http://security.stackexchange.com/questions/7610/how-to-secure-a-mongodb-instance/7655#7655
     通过一个SSH通道连接到你的Mongo虚拟专用服务器，你可以避免很多潜在的安全问题。警告：你的VPS一定要完全锁定，不能对其他端口开放。建议SSH配置为只有秘钥或秘钥加密码。
     
     要建立一个SSH通道，你需要保证：
