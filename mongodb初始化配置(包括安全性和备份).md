@@ -128,35 +128,29 @@
     ```
 
 
- 6. 安全性:通过SSH通道连接(这个没理解)
+ 6. 安全性: 指定端口, 要求密钥
     
     ``` shell
     # https://docs.mongodb.com/manual/administration/security-checklist/
     # https://www.digitalocean.com/community/tutorials/how-to-securely-configure-a-production-mongodb-server
     # http://security.stackexchange.com/questions/7610/how-to-secure-a-mongodb-instance/7655#7655
-    通过一个SSH通道连接到你的Mongo虚拟专用服务器，你可以避免很多潜在的安全问题。警告：你的VPS一定要完全锁定，不能对其他端口开放。建议SSH配置为只有秘钥或秘钥加密码。
     
-    要建立一个SSH通道，你需要保证：
-    •	你可以通过SSH进入你的Mongo Droplet
-    •	你的Mongo实例绑定到本地主机
+    通过一个SSH通道连接到你的Mongo虚拟专用服务器，你可以避免很多潜在的安全问题。
+    警告：你的VPS一定要完全锁定，不能对其他端口开放。建议SSH配置为只有秘钥或秘钥加密码。
+    举例: 设置服务器server_host对外网开放8080端口, mongo_host 只能通过server_host 连接。
     
     然后，运行以下命令来初始化连接：
-    
-    #The \s are just to multiline the command and make it more readable
     ssh \
-    -L 4321:localhost:27017 \
+    -L 8080:mongo_host:27017 \
     -i ~/.ssh/my_secure_key \
-    ssh_user[@mongo_db_droplet_host_or_ip](/user/mongo_db_droplet_host_or_ip)
-    <br />
-    我们一步一步来看：
-    1  SSH通道只需要SSH，你不需要其他特别的程序/二进制文件。
+    [user@]server_host
     
-    2  当通过SSH进入MongoDB Droplet时， -L 选项会告诉SSH设置一个通道，让当前机器的4321端口传输到27017端口的主机 localhost。
+    我们一步一步来看：
+    
+    2  -L, 远程调试时,先登录到server_host, 再通过server_host的8080端口跳转到 mongo_host的27017端口。
     
     3  -i 选项只是表示将上面的连接到一个SSH秘钥，而不是一个密码。
     
-    4  ssh_user[@mongo_db_droplet_host_or_ip](/user/mongo_db_droplet_host_or_ip) 是建立一个SSH连接的标准。
-    
-    第二条是真正的精华，决定你怎样告诉你的应用程序或服务器连接到你的MongoDB Droplet。
+    4  [user@]server_host , ssh登录的是server_host。
     
     ```
