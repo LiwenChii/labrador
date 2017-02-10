@@ -147,10 +147,10 @@
     
     我们一步一步来看：
     
-    2  -L, 远程调试时,先登录到server_host, 再通过server_host的8080端口跳转到 mongo_host的27017端口。
+    1  -L, 远程调试时,先登录到server_host, 再通过server_host的8080端口跳转到 mongo_host的27017端口。
     
-    3  -i 选项只是表示将上面的连接到一个SSH秘钥，而不是一个密码。
+    2  -i 选项只是表示将上面的连接到一个SSH秘钥，而不是一个密码。
     
-    4  [user@]server_host , ssh登录的是server_host。
+    3  [user@]server_host , ssh登录的是server_host。
     
     ```
